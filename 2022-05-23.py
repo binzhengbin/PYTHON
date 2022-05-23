@@ -111,4 +111,7 @@ for i in seq:
         print(i, 'is not a nucleotide')
 
 
+# 2022-05-23
+
+#
 
