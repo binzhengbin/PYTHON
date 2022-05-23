@@ -317,4 +317,19 @@ for line in in_file:
         out_file.write(line)
 out_file.close()
 
-#
+# 如果不引入计数器，还可以使用内置函数enumerate()
+out_file = open('new.txt', 'w')
+indices_to_remove = [1, 2, 5, 6]
+for index, line in enumerate(open('text.txt')):
+    if (index + 1) not in indices_to_remove:
+        out_file.write(line)
+out_file.close()
+# 对于给定的列表x，enumerate()返回索引i和x[i]值的元组（i，x[i]）
+x = [1, 2, 5, 6]
+for i, j in enumerate(x):
+    print(i, j)
+# 在上面的例子中，对于文件的每一行enumerate()返回一个行号（从0开始）和相应的内容所组成的元组。
+
+
+
+
