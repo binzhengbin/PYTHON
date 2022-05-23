@@ -280,6 +280,7 @@ print(b_not_a)
 # print(b_not_a)
 
 # 从列表、字典和文件中删除元素
+# 从列表中删除元素
 data = [1, 2, 3, 4, 5, 6, 7]
 data.pop()  # pop()默认删除最后一个元素
 data.pop(0)  # 可以给定位置i
@@ -288,8 +289,31 @@ data.remove(3)  # 删除给定值的元素，remove()只能删除第一次出现
 print(data)
 
 data = [1, 2, 3, 4, 5, 6, 7, 3]
-data = [x for x in data if x != 3]  # 这里使用的是列表推导式，可以删除所有列表中的同一值的元素
+data = [x for x in data if x != 3]  # 这里使用的是列表推导式，可以删除所有列表中的同一值的元素，只留下其它项元素。
 print(data)
 
+# 使用切片可以删除多个位置的元素
+data2 = data[:2] + data[3:]  # data[2]不会出现在data2列表中。
+print(data2)
 
+# 从字典中删除元素
+d = {'a':1, 'b':2, 'c':3}
+d.pop('a')
+print(d)
+del d['b']
+print(d)
+
+# 删除文本文件中特定行
+lines = open('text.txt').readlines()
+open('new.txt', 'w').writelines(lines[2:4] + lines[6:])
+# 或者
+in_file = open('text.txt')
+out_file = open('new.txt', 'w')
+index = 0
+indices_to_remove = [1, 2, 5, 6]
+for line in in_file:
+    index += 1
+    if index not in indices_to_remove:
+        out_file.write(line)
+out_file.close()
 
