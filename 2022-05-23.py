@@ -1,19 +1,19 @@
 ### 第五章
 
 codon_table = {
-    'GCU':'A', 'GCC':'A', 'GCA':'A', 'GCG':'A', 'CGU':'R', 'CGC':'R',
-    'CGA':'R', 'CGG':'R', 'AGA':'R', 'AGG':'R', 'UCU':'S', 'UCC':'S',
-    'UCA':'S', 'UCG':'S', 'AGU':'S', 'AGC':'S', 'AUU':'I', 'AUC':'I',
-    'AUA':'I', 'UUA':'L', 'UUG':'L', 'CUU':'L', 'CUC':'L', 'CUA':'L',
-    'CUG':'L', 'GGU':'G', 'GGC':'G', 'GGA':'G', 'GGG':'G', 'GUU':'V',
-    'GUC':'V', 'GUA':'V', 'GUG':'V', 'ACU':'T', 'ACC':'T', 'ACA':'T',
-    'ACG':'T', 'CCU':'P', 'CCC':'P', 'CCA':'P', 'CCG':'P', 'AAU':'N',
-    'AAC':'N', 'GAU':'D', 'GAC':'D', 'UGU':'C', 'UGC':'C', 'CAA':'Q',
-    'CAG':'Q', 'GAA':'E', 'GAG':'E', 'CAU':'H', 'CAC':'H', 'AAA':'K',
-    'AAG':'K', 'UUU':'F', 'UUC':'F', 'UAU':'Y', 'UAC':'Y', 'AUG':'M',
-    'UGG':'W',
-    'UAG':'STOP', 'UGA':'STOP', 'UAA':'STOP'
-    }
+    'GCU': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A', 'CGU': 'R', 'CGC': 'R',
+    'CGA': 'R', 'CGG': 'R', 'AGA': 'R', 'AGG': 'R', 'UCU': 'S', 'UCC': 'S',
+    'UCA': 'S', 'UCG': 'S', 'AGU': 'S', 'AGC': 'S', 'AUU': 'I', 'AUC': 'I',
+    'AUA': 'I', 'UUA': 'L', 'UUG': 'L', 'CUU': 'L', 'CUC': 'L', 'CUA': 'L',
+    'CUG': 'L', 'GGU': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G', 'GUU': 'V',
+    'GUC': 'V', 'GUA': 'V', 'GUG': 'V', 'ACU': 'T', 'ACC': 'T', 'ACA': 'T',
+    'ACG': 'T', 'CCU': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P', 'AAU': 'N',
+    'AAC': 'N', 'GAU': 'D', 'GAC': 'D', 'UGU': 'C', 'UGC': 'C', 'CAA': 'Q',
+    'CAG': 'Q', 'GAA': 'E', 'GAG': 'E', 'CAU': 'H', 'CAC': 'H', 'AAA': 'K',
+    'AAG': 'K', 'UUU': 'F', 'UUC': 'F', 'UAU': 'Y', 'UAC': 'Y', 'AUG': 'M',
+    'UGG': 'W',
+    'UAG': 'STOP', 'UGA': 'STOP', 'UAA': 'STOP'
+}
 
 # read the RNA sequence into a single string
 rna = ''
@@ -42,7 +42,6 @@ for frame in range(3):
         print(prot[i:i + 48])
         i = i + 48
 
-
 #  字典
 # 真（TRUE）假（FALSE）布尔值
 n = 0
@@ -70,7 +69,6 @@ else:
     print(0)
 
 print(len(codon_table2))  # 计算字典所含有元素的数量
-
 
 ### while 语句
 # 为了生成更易阅读的结果，蛋白质序列按每行 48 个符号的块来进行输出
@@ -110,7 +108,6 @@ for i in seq:
     if i not in bases:
         print(i, 'is not a nucleotide')
 
-
 # 2022-05-23
 
 #
@@ -136,12 +133,12 @@ print(sequences['P30443'])
 # 无序（成环）残基（倾向值>=0.3）为大写，"有序"残基(即倾
 # 向于出现在 级结构元素中〉为小写。
 propensities = {
-   'N': 0.2299, 'P': 0.5523, 'Q':-0.18770, 'A':-0.2615,
-   'R':-0.1766, 'S': 0.1429, 'C':-0.01515, 'T': 0.0089,
-   'D': 0.2276, 'E':-0.2047, 'V':-0.38620, 'F':-0.2256,
-   'W':-0.2434, 'G': 0.4332, 'H':-0.00120, 'Y':-0.2075,
-   'I':-0.4222, 'K':-0.1001, 'L': 0.33793, 'M':-0.2259
-   }
+    'N': 0.2299, 'P': 0.5523, 'Q': -0.18770, 'A': -0.2615,
+    'R': -0.1766, 'S': 0.1429, 'C': -0.01515, 'T': 0.0089,
+    'D': 0.2276, 'E': -0.2047, 'V': -0.38620, 'F': -0.2256,
+    'W': -0.2434, 'G': 0.4332, 'H': -0.00120, 'Y': -0.2075,
+    'I': -0.4222, 'K': -0.1001, 'L': 0.33793, 'M': -0.2259
+}
 threshold = 0.3
 input_seq = "IVGGYTCGANTVPYQVSLNSGYHFCGGSLINSQWVVSAAHCYKSG\
 IQVRLGEDNINVVEGNEQFISASKSIVHPSYNSNTLNNDIMLIKLKSAASLNSR\
@@ -162,11 +159,11 @@ print(output_seq)
 
 # 如何从 PDB 文件中提取氨基酸序列
 aa_codes = {
-     'ALA':'A', 'CYS':'C', 'ASP':'D', 'GLU':'E',
-     'PHE':'F', 'GLY':'G', 'HIS':'H', 'LYS':'K',
-     'ILE':'I', 'LEU':'L', 'MET':'M', 'ASN':'N',
-     'PRO':'P', 'GLN':'Q', 'ARG':'R', 'SER':'S',
-     'THR':'T', 'VAL':'V', 'TYR':'Y', 'TRP':'W'}
+    'ALA': 'A', 'CYS': 'C', 'ASP': 'D', 'GLU': 'E',
+    'PHE': 'F', 'GLY': 'G', 'HIS': 'H', 'LYS': 'K',
+    'ILE': 'I', 'LEU': 'L', 'MET': 'M', 'ASN': 'N',
+    'PRO': 'P', 'GLN': 'Q', 'ARG': 'R', 'SER': 'S',
+    'THR': 'T', 'VAL': 'V', 'TYR': 'Y', 'TRP': 'W'}
 seq = ''
 for line in open('1TLD.pdb'):
     if line[0:6] == 'SEQRES':
@@ -194,14 +191,17 @@ dir['AUG'] = 'Start'
 dir['GGG'] = 'Glycin'
 print(dir)
 
-
 # 自测题 5.4
-pref_H = {'A':'1.45', 'C':'0.77', 'D':'0.98', 'E':'1.53', 'F':'1.12', 'G':'0.53', 'H':'1.24', 'I':'1.00', 'K':'1.07',
-          'L':'1.34', 'M':'1.20', 'N':'0.73', 'P':'0.59', 'Q':'1.17', 'R':'0.79', 'S':'0.79', 'T':'0.82', 'V':'1.14',
-          'W':'1.14', 'Y':'0.61'}
-pref_E = {'A':'0.97', 'C':'1.30', 'D':'0.80', 'E':'0.26', 'F':'1.28', 'G':'0.81', 'H':'0.71', 'I':'1.60', 'K':'0.74',
-          'L':'1.22', 'M':'1.67', 'N':'0.65', 'P':'0.62', 'Q':'1.23', 'R':'0.90', 'S':'0.72', 'T':'1.20', 'V':'1.65',
-          'W':'1.19', 'Y':'1.29'}
+pref_H = {'A': '1.45', 'C': '0.77', 'D': '0.98', 'E': '1.53', 'F': '1.12', 'G': '0.53', 'H': '1.24', 'I': '1.00',
+          'K': '1.07',
+          'L': '1.34', 'M': '1.20', 'N': '0.73', 'P': '0.59', 'Q': '1.17', 'R': '0.79', 'S': '0.79', 'T': '0.82',
+          'V': '1.14',
+          'W': '1.14', 'Y': '0.61'}
+pref_E = {'A': '0.97', 'C': '1.30', 'D': '0.80', 'E': '0.26', 'F': '1.28', 'G': '0.81', 'H': '0.71', 'I': '1.60',
+          'K': '0.74',
+          'L': '1.22', 'M': '1.67', 'N': '0.65', 'P': '0.62', 'Q': '1.23', 'R': '0.90', 'S': '0.72', 'T': '1.20',
+          'V': '1.65',
+          'W': '1.19', 'Y': '1.29'}
 seq = ''
 output = ''
 threshold2 = 1.00
@@ -226,10 +226,70 @@ while i < len(output):  # 输出结果为每行64个
     i = i + 64
 
 
-### 第6章
+######
+#####
+####
+###
+##
+# 第6章
 
+tracking = open('transcripts.tracking', 'r')
+out_file = open('transcripts-filtered.tracking', 'w')
+for track in tracking:
+    columns = track.strip().split('\t')  # 制表符\t 它的作用是对齐表格数据的各列。
+    wildtype = columns[4:7].count('-')  # 搜索的是第5-7列
+    if wildtype < 2:
+        out_file.write(track)
+tracking.close()
+out_file.close()
 
+# 合并两个数据集
+# 问题描述；保留数据集A中也存在于数据集B中的项。
+data_a = [1, 2, 3, 4, 5, 6, 7]
+data_b = [1, 5, 7, 8, 9]
+a_and_b = []
+for number in data_a:
+    if number in data_b:
+        a_and_b.append(number)
+print(a_and_b)
+# 如果不考虑顺序
+# data_a = set([1, 2, 3, 4, 5, 6, 7])
+# data_b = set([1, 5, 7, 8, 9])
+# a_and_b = data_a.intersection(data_b)
+# print(a_and_b)
 
+# 两组数据之间的差异
+data_a = [1, 2, 3, 4, 5, 6, 7]
+data_b = [1, 5, 7, 8, 9]
+a_not_b = []
+b_not_a = []
+for num in data_a:
+    if num not in data_b:
+        a_not_b.append(num)
+for num in data_b:
+    if num not in data_a:
+        b_not_a.append(num)
+print(a_not_b)
+print(b_not_a)
+# 如果不考虑元素的顺序
+# data_a = set([1, 2, 3, 4, 5, 6, 7])
+# data_b = set([1, 5, 7, 8, 9])
+# a_not_b = data_a.difference(data_b)
+# b_not_a = data_b.difference(data_a)
+# print(a_not_b)
+# print(b_not_a)
+
+# 从列表、字典和文件中删除元素
+data = [1, 2, 3, 4, 5, 6, 7]
+data.pop()  # pop()默认删除最后一个元素
+data.pop(0)  # 可以给定位置i
+del (data[0])  # del()内置函数也能删除
+data.remove(3)  # 删除给定值的元素，remove()只能删除第一次出现的值
+print(data)
+
+data = [1, 2, 3, 4, 5, 6, 7, 3]
+data = [x for x in data if x != 3]  # 这里使用的是列表推导式，可以删除所有列表中的同一值的元素
+print(data)
 
 
 
