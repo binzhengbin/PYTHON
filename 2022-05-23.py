@@ -185,5 +185,51 @@ while i < len(seq):  # 输出结果为每行64个
 # TSYPDVLKCLKAPILSDSSCKSAYPGQITSNMFCAGYLEGGKDSCQGDSGGPVVCSGKLQGIVS
 # WGSGCAQKNKPGVYTKVCNYVSWIKQTIASN
 
+#  例题5.1
+dir = {}
+dir['UAA'] = 'Stop'
+dir['UAG'] = 'Stop'
+dir['UGA'] = 'Stop'
+dir['AUG'] = 'Start'
+dir['GGG'] = 'Glycin'
+print(dir)
+
+
+# 自测题 5.4
+pref_H = {'A':'1.45', 'C':'0.77', 'D':'0.98', 'E':'1.53', 'F':'1.12', 'G':'0.53', 'H':'1.24', 'I':'1.00', 'K':'1.07',
+          'L':'1.34', 'M':'1.20', 'N':'0.73', 'P':'0.59', 'Q':'1.17', 'R':'0.79', 'S':'0.79', 'T':'0.82', 'V':'1.14',
+          'W':'1.14', 'Y':'0.61'}
+pref_E = {'A':'0.97', 'C':'1.30', 'D':'0.80', 'E':'0.26', 'F':'1.28', 'G':'0.81', 'H':'0.71', 'I':'1.60', 'K':'0.74',
+          'L':'1.22', 'M':'1.67', 'N':'0.65', 'P':'0.62', 'Q':'1.23', 'R':'0.90', 'S':'0.72', 'T':'1.20', 'V':'1.65',
+          'W':'1.19', 'Y':'1.29'}
+seq = ''
+output = ''
+threshold2 = 1.00
+for line in open('SwissProt.fasta'):
+    if not line.startswith('>'):
+        seq = seq + line.strip()
+i = 0
+while i < len(seq):  # 输出结果为每行64个
+    print(seq[i:i + 64])
+    i = i + 64
+for H in seq:
+    if H in pref_H and pref_E:
+        if float(pref_H[H]) >= threshold2 and float(pref_H[H]) > float(pref_E[H]):
+            output += 'H'
+        if float(pref_E[H]) >= threshold2 and float(pref_H[H]) < float(pref_E[H]):
+            output += 'E'
+        else:
+            output += 'L'
+i = 0
+while i < len(output):  # 输出结果为每行64个
+    print(output[i:i + 64])
+    i = i + 64
+
+
+### 第6章
+
+
+
+
 
 
