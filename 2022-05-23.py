@@ -330,6 +330,22 @@ for i, j in enumerate(x):
     print(i, j)
 # 在上面的例子中，对于文件的每一行enumerate()返回一个行号（从0开始）和相应的内容所组成的元组。
 
-
+## 保持或者不保持顺序地删除重复
+# 从文本文件中保留顺序地选择性删除重复记录
+input_file = open('uniprotid.txt', 'r')
+output_file = open('uniprot-unique.txt', 'w')
+unique = []
+for line in input_file:
+    if line not in unique:
+        output_file.write(line)
+        unique.append(line)
+out_file.close()
+# 从文本文件中不保留顺序地选择性删除重复记录
+# 全部读取为一个集合
+input_file = open('uniprotid.txt')
+output_file = open('uniprot-unique.txt', 'w')
+unique = set(input_file)
+for line in unique:
+    output_file.write(line)
 
 
