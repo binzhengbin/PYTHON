@@ -114,4 +114,76 @@ for i in seq:
 # 2022-05-23
 
 #
+sequences = {}
+ac = ''
+seq = ''
+for line in open('SwissProt.fasta'):
+    if line.startswith('>') and seq != ' ':
+        sequences[ac] = seq  # 在字典sequences中，把值（变量seq的内容）分配给键（变量ac的内容）
+        seq = ''  # seq初始化为空字符串
+    if line.startswith('>'):
+        ac = line.split('|')[1]
+    else:
+        seq = seq + line.strip()
+sequences[ac] = seq
+print(sequences.keys())
+print(sequences['P30443'])
+
+# 预测蛋白质序列中的无序（环）区域。
+# 该预测程序的思想是每个氨基酸都有一个特定的二级结构元件倾向，可以通
+# 过大量己知蛋白质结构 （PDB）级结构元件中各类氨基酸类型出现的频率f，估计氨基
+# 酸的倾向。氨基酸"无序"(即成环)的倾向可用 1-f 计算。阈值为0.3
+# 无序（成环）残基（倾向值>=0.3）为大写，"有序"残基(即倾
+# 向于出现在 级结构元素中〉为小写。
+propensities = {
+   'N': 0.2299, 'P': 0.5523, 'Q':-0.18770, 'A':-0.2615,
+   'R':-0.1766, 'S': 0.1429, 'C':-0.01515, 'T': 0.0089,
+   'D': 0.2276, 'E':-0.2047, 'V':-0.38620, 'F':-0.2256,
+   'W':-0.2434, 'G': 0.4332, 'H':-0.00120, 'Y':-0.2075,
+   'I':-0.4222, 'K':-0.1001, 'L': 0.33793, 'M':-0.2259
+   }
+threshold = 0.3
+input_seq = "IVGGYTCGANTVPYQVSLNSGYHFCGGSLINSQWVVSAAHCYKSG\
+IQVRLGEDNINVVEGNEQFISASKSIVHPSYNSNTLNNDIMLIKLKSAASLNSR\
+VASISLPTSCASAGTQCLISGWGNTKSSGTSYPDVLKCLKAPILSDSSCKSAYP\
+GQITSNMFCAGYLEGGKDSCQGDSGGPVVCSGKLQGIVSWGSGCAQKNKPGVYT\
+KVCNYVSWIKQTIASN"
+output_seq = ''
+for res in input_seq:
+    if res in propensities:
+        if propensities[res] >= threshold:
+            output_seq += res.upper()
+        else:
+            output_seq += res.lower()
+    else:
+        print('unrecognized character:', res)
+        break
+print(output_seq)
+
+# 如何从 PDB 文件中提取氨基酸序列
+aa_codes = {
+     'ALA':'A', 'CYS':'C', 'ASP':'D', 'GLU':'E',
+     'PHE':'F', 'GLY':'G', 'HIS':'H', 'LYS':'K',
+     'ILE':'I', 'LEU':'L', 'MET':'M', 'ASN':'N',
+     'PRO':'P', 'GLN':'Q', 'ARG':'R', 'SER':'S',
+     'THR':'T', 'VAL':'V', 'TYR':'Y', 'TRP':'W'}
+seq = ''
+for line in open('1TLD.pdb'):
+    if line[0:6] == 'SEQRES':
+        columns = line.split()
+        for resname in columns[4:]:
+            seq = seq + aa_codes[resname]
+i = 0
+print('>1TLd')
+while i < len(seq):  # 输出结果为每行64个
+    print(seq[i:i + 64])
+    i = i + 64
+# 结果如下
+# >1TLd
+# IVGGYTCGANTVPYQVSLNSGYHFCGGSLINSQWVVSAAHCYKSGIQVRLGEDNINVVEGNEQF
+# ISASKSIVHPSYNSNTLNNDIMLIKLKSAASLNSRVASISLPTSCASAGTQCLISGWGNTKSSG
+# TSYPDVLKCLKAPILSDSSCKSAYPGQITSNMFCAGYLEGGKDSCQGDSGGPVVCSGKLQGIVS
+# WGSGCAQKNKPGVYTKVCNYVSWIKQTIASN
+
+
 
