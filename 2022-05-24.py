@@ -17,3 +17,8 @@ print(id_set)
 # 方法add()可用于将一个元素添加到集合中，如果该元素已经存在那么就不起作用。
 # 方法update()用于将几个元素添加到集合中。
 # pop() remove()和discard()可以将元素从集合中去除。
+s1 = {1, 2, 3, 4, 5}
+s1.add(10)
+print(s1)
+s1.update(['a', 'b', 'c'])
+print(s1)
