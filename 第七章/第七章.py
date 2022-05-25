@@ -12,7 +12,13 @@ table = table[1:]  # 删除标签行
 protein, ext1, ext2, ext3 = zip(*table)  # 创建四个元组，每个包含一列数据。
 extinction = ext1 + ext2 + ext3
 protein = protein * 3
-table = zip(protein , extinction)
+table = zip(protein, extinction)
 for prot, ext in table:
     print(prot, ext)
+
+# 二维表
+# 任何表可以被编码成含有列表的列表，也称为嵌套列表。
+# 嵌套列表中，有一个单一的外列表（包含内部的行）和内列表（一行一个），外列表包含内列表。
+# 二维阵列
+
 
