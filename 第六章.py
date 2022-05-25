@@ -56,3 +56,5 @@ print(common)
 def multiply(x, y):
     return x * y
 print(reduce(multiply, (1, 2, 3, 4)))
+
+
