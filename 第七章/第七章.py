@@ -69,5 +69,24 @@ print(protein)  # 可以在表上运行一个循环来收集一列的所有数�
 
 # 如果想要用这种方法提取多列或访问相同的列多次，程序将变得很长，难以阅读。
 protein, ext1, ext2, ext3 = zip(*table)  # zip(*table) 命令把每一列转换为单个元组变量，从而有效地将表旋转90度。
+print(protein, ext1, ext2, ext3)
 
+# 合并多列
+# 加号（+）和乘号（*）运算符在python中可以分别应用于列表和元组的合并和乘法。
+# 乘法通过复制来扩展列表。
+protein = protein * 3
+print(protein)
+print([1, 2, 3] * 3)  # 类似于这种
+# 加法可以将两个或者多个列表或元组连接为一个。
+print([1, 2, 3] + [4, 5, 6])
+# 其结果是包含所有数据项的一个列表或元组
+extinction = ext1 + ext2 + ext3
+print(extinction)
+
+
+# zip()函数 python3.*
+a = [1, 2, 3]
+b = [4, 5, 6]
+for each in zip(a, b):
+    print(each)
 
