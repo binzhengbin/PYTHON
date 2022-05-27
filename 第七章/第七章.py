@@ -89,4 +89,107 @@ a = [1, 2, 3]
 b = [4, 5, 6]
 for each in zip(a, b):
     print(each)
+# zip()命令可以将两个或多个列表中的元素一个接一个的相结合。
+c = [7, 8, 9]
+for each in zip(a, b, c):
+    print(each)
+# 每个输入列表中的第一个元素配对在一起，然后是第二个元素，以此类推。
+# zip()函数的参数必须是可迭代的（列表，元组和字符串）。
+# 它返回的结果是一个包含数个元组的列表。
+# zip(*table) 这个星号表示告诉zip函数使用嵌套列表中的所有列表作为参数。
+# zip(*table) 可以将表旋转90度
+
+
+# 插入和删除列
+# 插入列
+table = [['protein', 'ext1', 'ext2', 'ext3'],
+         [0.16, 0.038, 0.044, 0.040],
+         [0.33, 0.089, 0.095, 0.091],
+         [0.66, 0.184, 0.191, 0.191],
+         [1.00, 0.280, 0.292, 0.283],
+         [1.32, 0.365, 0.367, 0.365],
+         [1.66, 0.441, 0.443, 0.444]
+         ]   # 还是这个列表
+table = zip(*table)  # 先旋转90度
+table2 = list(table)  # 使用list函数转化为列表
+table2.append(['ext4', 0, 0, 0, 0, 0, 0])
+table2.pop(2)  # 删除某列
+print(table2)
+table2 = zip(*table2)  # 转置回去
+table3 = list(table2)
+print(table3)
+
+# zip函数将列表转变成了元组，而元组是不可变的，这意味着使用zip函数后不能在对单个单元格进行操作，需要将行再次转换为列表。
+table3[1] = list(table3[1])
+table3[1][2] = 1111
+print(table3)
+
+row = [0] * 6  # 创建一维0列表
+print(row)
+table0 = []
+for i in range(6):   # 通过重复循环创建多行
+    table0.append([0] * 6)
+print(table0)
+
+table4 = [[0] * 6 for i in range(6)]  # 列表推导式
+print(table4)
+
+
+# 用字典表示表格数据
+table = [
+    {'protein': 0.16, 'ext1': 0.038, 'ext2': 0.044, 'ext3': 0.040},
+    {'protein': 0.33, 'ext1': 0.089, 'ext2': 0.095, 'ext3': 0.091},
+    {'protein': 0.66, 'ext1': 0.184, 'ext2': 0.191, 'ext3': 0.191},
+    {'protein': 1.00, 'ext1': 0.280, 'ext2': 0.292, 'ext3': 0.283},
+    {'protein': 1.32, 'ext1': 0.365, 'ext2': 0.367, 'ext3': 0.365},
+    {'protein': 1.66, 'ext1': 0.441, 'ext2': 0.443, 'ext3': 0.444}
+]
+cell = table[1]['ext2']
+print(cell)
+
+# 字典中嵌套字典
+table = {
+    'row1': {'protein': 0.16, 'ext1': 0.038, 'ext2': 0.044, 'ext3': 0.040},
+    'row2': {'protein': 0.33, 'ext1': 0.089, 'ext2': 0.095, 'ext3': 0.091},
+    'row3': {'protein': 0.66, 'ext1': 0.184, 'ext2': 0.191, 'ext3': 0.191},
+    'row4': {'protein': 1.00, 'ext1': 0.280, 'ext2': 0.292, 'ext3': 0.283},
+    'row5': {'protein': 1.32, 'ext1': 0.365, 'ext2': 0.367, 'ext3': 0.365},
+    'row6': {'protein': 1.66, 'ext1': 0.441, 'ext2': 0.443, 'ext3': 0.444}
+}
+cell = table['row1']['ext2']
+print(cell)
+# 这样查找特定的单元格会更加快捷简单
+######## 用来加速程序进行的搜索字典被称为'索引'。#######
+
+# 7.3 如何转换表的表现形式
+# 用于储存表的所有方法：嵌套列表、嵌套字典和二者混合
+# 每种形式都有其优缺点，因此实际运用中可能需要将表的一种表现形式转化为另一种。
+# 嵌套列表转换为嵌套字典
+table = [
+         ['protein', 'ext1', 'ext2', 'ext3'],
+         [0.16, 0.038, 0.044, 0.040],
+         [0.33, 0.089, 0.095, 0.091],
+         [0.66, 0.184, 0.191, 0.191],
+         [1.00, 0.280, 0.292, 0.283],
+         [1.32, 0.365, 0.367, 0.365],
+         [1.66, 0.441, 0.443, 0.444],
+         [1.66, 0.441, 0.443, 0.444]
+         ]
+nested_dict = {}
+n = 0
+key = table[0]
+for row in table[1:]:
+    n = n + 1
+    entry = {key[0]: row[0], key[1]: row[1], key[2]: row[2], key[3]: row[3]}
+    nested_dict['row' + str(n)] = entry  # 左边是字典的键 右边是字典的值
+print(nested_dict)
+
+# 嵌套字典转换为嵌套列表
+nested_list = []
+for entry in nested_dict:
+    key = nested_dict[entry]
+    nested_list.append([key['protein'], key['ext1'], key['ext2'], key['ext3']])
+print(nested_list)
+# 认真看能看懂
+
 
