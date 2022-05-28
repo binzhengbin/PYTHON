@@ -113,11 +113,64 @@ print(new_tup)
 # 8.3.6 按长度对字符串排序
 # lambda函数又称为匿名函数，定义函数
 data = ['ACCTGGCCA', 'ACTG', 'TACGGCAGGAGACG', 'TTGGATC']
-bylength = sorted(data, key=lambda x: len(x))  # 通过lambda定义，变量x取列表元素值data的值。
+bylength = sorted(data, key=lambda x: len(x))  # 通过lambda定义，变量x取列表元素值data的值。当x = 'ACTG'时，lambda函数返回4（len('ACTG')的结果）。
 print(bylength)
 
+# 如果表格以嵌套列表形式呈现，可使用key指明自己先按哪一列对列表进行排序。
+table = sorted(table, key=lambda col: col[1])
 
+# 8.4 示例
+# 先后按第一列、第二列、第三列到最后一列对表进行排序
+from operator import itemgetter
+in_file = open('random_distribution.tsv')
+table2 = []
+for line in in_file:
+    columns = line.split()
+    columns = [float(x) for x in columns]
+    table2.append(columns)
+table2_sorted = sorted(table2, key=itemgetter(0, 1, 2, 3, 4, 5, 6))
+print(table2_sorted)
 
+# 例8.2 按自己选择的参数对blast输出排序
+# 按blast输出第三列col[2]降序排序,以浮点数的形式包含序列同源性百分比。
+from operator import itemgetter
+input_file = open('blastout.csv')
+output_file = open('blastsorted.csv', 'w')
+table = []
+for line in input_file:
+    col = line.split(',')
+    col[2] = float(col[2])
+    table.append(col)
+table_sorted = sorted(table, key=itemgetter(2), reverse=True)
+for row in table_sorted:
+    row = [str(x) for x in row]
+    output_file.write('\t'.join(row) + '\n')
+output_file.close()
+
+# 例8.3 根据RCSB报告中的RMSD对血红蛋白PDB条目排序
+# 先按RMSD第四列，然后再按蛋白质的序列长度第五列排序
+from operator import itemgetter
+
+input_file = open('PDBhaemoglobinReport.csv')
+output_file = open('PDBhaemoglobinsorted.csv', 'w')
+
+table = []
+header = input_file.readline()
+for line in input_file:
+    col = line.split(',')
+    col[3] = float(col[3][1:-1])
+    col[4] = int(col[4][1:-2])  # 这里是因为每行最后还有一个换行符
+    table.append(col)
+
+table_sorted = sorted(table, key=itemgetter(3, 4))
+
+output_file.write(header + '\t')
+for row in table_sorted:
+    row = [str(x) for x in row]
+    output_file.write('\t'.join(row) + '\n')
+
+input_file.close()
+output_file.close()
 
 
 
