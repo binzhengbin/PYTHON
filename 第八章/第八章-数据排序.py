@@ -81,9 +81,39 @@ new_data2 = sorted(data, reverse=True)
 print(new_data2)
 
 # 8.3.5 数据结构排序
+# 对字典进行排序时，可以将所有键提取出来到列表中，对元组进行排序
 data = {1: 'a', 2: 'b',  4: 'd', 3: 'c', 5: 't', 6: 'm', 36: 'z'}
 keys = list(data)
 print(keys)
 keys.sort()
 for key in keys:
     print(key, data[key])
+
+# 使用内置函数sorted()对字典排序
+for key in sorted(data):
+    print(key, data[key])
+
+# 对传递至列表的元组进行排序
+# 元组是不可变的，因此自身不能排序。
+data = (1, 4, 5, 3, 8, 9, 2, 6, 8, 9, 40)
+list_data = list(data)
+list_data.sort()
+new_tup = tuple(list_data)
+print(new_tup)
+
+# 使用内置函数sorted()对元组排序
+# sorted(iterable, key=None, reverse=False)
+# iterable 是指可迭代对象
+# key 主要是用来比较的元素，只有一个参数，具体的函数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。
+# reverse 是指排序规则，False代表升序（默认），反之则为降序。
+data = (1, 4, 5, 3, 8, 9, 2, 6, 8, 9, 40)
+new_tup = tuple(sorted(data))
+print(new_tup)
+
+# 8.3.6 按长度对字符串排序
+# lambda函数又称为匿名函数，定义函数
+data = ['ACCTGGCCA', 'ACTG', 'TACGGCAGGAGACG', 'TTGGATC']
+bylength = sorted(data, key=lambda x: len(x))
+print(bylength)
+
+
