@@ -117,3 +117,14 @@ bylength = sorted(data, key=lambda x: len(x))  # 通过lambda定义，变量x取
 print(bylength)
 
 
+
+
+
+
+
+
+
+
+
+
+
