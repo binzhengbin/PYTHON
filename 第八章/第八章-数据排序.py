@@ -113,7 +113,7 @@ print(new_tup)
 # 8.3.6 按长度对字符串排序
 # lambda函数又称为匿名函数，定义函数
 data = ['ACCTGGCCA', 'ACTG', 'TACGGCAGGAGACG', 'TTGGATC']
-bylength = sorted(data, key=lambda x: len(x))
+bylength = sorted(data, key=lambda x: len(x))  # 通过lambda定义，变量x取列表元素值data的值。
 print(bylength)
 
 
