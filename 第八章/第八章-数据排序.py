@@ -59,3 +59,31 @@ def my_cmp(a, b):  # 这是定义的新函数
 
 # 8.3.2内置函数sorted()
 # sort()函数只适用于列表，而soretd()函数可以对列表、元组、字典等多种数据进行排序。
+L = [1, 2, 3, 7, 5, 6, 4, 8, 9, 100, 30]
+newdata = sorted(L)
+print(newdata)
+
+# 8.3.3 使用itemgetter排序
+# 内置函数sorted()可以通过自定义函数（如表中给定列的值）进行排序，使用operator模块中的itemgetter函数可以达到该目标。
+from operator import itemgetter
+data = ['ACCTGGCCA', 'ACTG', 'TACGGCAGGAGACG', 'TTGGATC']
+a = itemgetter(1)(data)
+print(a)
+b = itemgetter(1, -1)(data)
+print(b)
+# itemgetter(i)(T) 返回Td的第i个元素，T可以是字符串、列表、元组或字典。
+# 如果想先按第二列，然后再按其它列（比如第四列）对table进行排序
+new_table = sorted(table, key=itemgetter(1, 3))
+
+# 8.3.4
+# 按照降序排序时，附加参数reverse = True可以传递至sorted()函数中
+new_data2 = sorted(data, reverse=True)
+print(new_data2)
+
+# 8.3.5 数据结构排序
+data = {1: 'a', 2: 'b',  4: 'd', 3: 'c', 5: 't', 6: 'm', 36: 'z'}
+keys = list(data)
+print(keys)
+keys.sort()
+for key in keys:
+    print(key, data[key])
