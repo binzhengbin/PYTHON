@@ -62,8 +62,44 @@ print(m1.group('w2'))
 
 # 9.3.4修改字符串
 # split(s) sub(r,s,[c]) subn(r,s,[c]) 三种方法
+# split(s)
 import re
 separaator = re.compile('\|')  # 字符｜是正则表达式的元字符，在元字符前面放一个反斜杠（'\'），可以让python解析它为一个正常的字符。
 annotation = 'ATOM:CA|RES:ALA|CHAIN:B|NUMRES:166'
 columns = separaator.split(annotation)
 print(columns)
+
+# sub(r, s, [c])
+import re
+separator = re.compile('\|')
+annotation = 'ATOM:CA|RES:ALA|CHAIN:B|NUMRES:166'
+new_annotation = separator.sub('@', annotation)
+print(new_annotation)
+# sub(r, s, [c]) 方法返回一个新字符串，其中s字符串中没有重叠出现的给定模式，都将替换为r的值（如果可选参数c未被指定）。
+# 如果没有在s字符串中找到该模式，则返回s，值不变。该可选参数c是可被替换的模式的最大数量值；c必须是一个非负整数。
+new_annotation = separator.sub('@', annotation, 2)
+print(new_annotation)
+
+# subn(r,s,[c]) 返回一个包含两个元件的元组，其中第一个元件是新的字符串，第二个是发生替代的数量
+new_annotation = separator.subn('@', annotation)
+print(new_annotation)
+
+# 9.4 示例
+# 例题9.2 如何在基因组序列中找到转录因子结合位点
+import re
+genome_seq = open('genome.txt').read()
+sites = []
+for line in open('TFBS.txt'):
+    fields = line.split()
+    tf = fields[0]
+    site = fields[1]
+    sites.append((tf, site))
+    print(sites)
+for tf, site in sites:
+    tfbs_regexp = re.compile(site)
+    all_matches = tfbs_regexp.findall(genome_seq)
+    matches = tfbs_regexp.finditer(genome_seq)
+    if all_matches:
+        print(tf, ':')
+        for tfbs in matches:
+            print('\t', tfbs.group(), tfbs.start(), tfbs.end())
