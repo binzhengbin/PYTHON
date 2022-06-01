@@ -104,6 +104,7 @@ format = '2s1s1s1s1s'
 a = struct.pack(format, b'10', b'2', b'3', b'4', b'5')
 print(a)
 print(a.decode('utf-8'))
+# https://blog.csdn.net/zxbylx1120471286/article/details/107187504?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-107187504-blog-80042099.pc_relevant_scanpaymentv1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-107187504-blog-80042099.pc_relevant_scanpaymentv1
 
 # unpack() parses the string to a tuple
 # In Python 3, struct() require bytes
