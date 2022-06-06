@@ -119,3 +119,13 @@ format = '30s30s20s1s'
 b = struct.calcsize(format)  # 返回给定格式化字符串的字符总数。
 print(b)
 
+# 例题10.1
+from math import sqrt
+def calc_dist(p1, p2):
+    dx = p1[0] - p2[0]
+    dy = p1[1] - p2[1]
+    dz = p1[2] - p2[2]
+    distsq = pow(dx, 2) + pow(dy, 2) + pow(dz, 2)
+    distance = sqrt(distsq)
+    return distance
+print(calc_dist([3.0, 3.0, 3.0], [9.0, 9.0, 9.0]))
