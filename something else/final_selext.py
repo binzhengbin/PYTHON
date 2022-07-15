@@ -1,23 +1,11 @@
 # -*- coding: UTF-8 -*-
-
+# 记住要求是csv文件 否则会报错
 import re
 import sys
 import os
-import pandas as pd
-def xlsx_to_csv_pd():
-    data_xls = pd.read_excel('', index_col=0)
-    data_xls.to_csv('1.csv', encoding='utf-8')
-if __name__ == '__main__':
-    xlsx_to_csv_pd()
 
-
-
-
-
-
-
-species = open("/Users/zhengbin/Desktop/MetaStats/species/species_qsig.csv", 'r')
-out_file = open("/Users/zhengbin/Desktop/metastat/same/species_sam.csv", 'w')
+species = open("/Users/zhengbin/Desktop/MetaStats/phylum/phylum_qsig_detail.csv", 'r')
+out_file = open("/Users/zhengbin/Desktop/metastat/same/phylum_sam.csv", 'w')
 for line in species:
     columns = line.strip().split(',')
     one = columns[1].count('-')
@@ -30,9 +18,9 @@ out_file.close()
 str1 = []
 str2 = []
 str_dump = []
-fa = open("/Users/zhengbin/Desktop/MetaStats/species/species_qsig.csv",'r')
-fb = open("/Users/zhengbin/Desktop/metastat/same/species_sam.csv",'r')
-fc = open("/Users/zhengbin/Desktop/metastat/diff/species_diff.csv",'w+')
+fa = open("/Users/zhengbin/Desktop/MetaStats/phylum/phylum_qsig_detail.csv",'r')
+fb = open("/Users/zhengbin/Desktop/metastat/same/phylum_sam.csv",'r')
+fc = open("/Users/zhengbin/Desktop/metastat/diff/phylum_diff.csv",'w+')
 # 将A.txt的内容逐行读到str1中
 for line in fa.readlines():
     str1.append(line.replace("\n",''))

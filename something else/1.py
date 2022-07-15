@@ -1,6 +1,17 @@
+# -*- coding: utf-8 -*-
+# https://blog.csdn.net/destiny_python/article/details/78663460
+
 import pandas as pd
-def xlsx_to_csv_pd():
-    data_xls = pd.read_excel('/Users/zhengbin/Desktop/MetaStats/phylum/phylum_qsiq.xls', index_col=0)
-    data_xls.to_csv('/Users/zhengbin/Desktop/MetaStats/phylum/phylum_qsiq.csv', encoding='utf-8')
-if __name__ == '__main__':
-    xlsx_to_csv_pd()
+
+# input.csv是那个大文件，有很多很多行
+df1 = pd.read_csv('/Users/zhengbin/Desktop/Relative/Unigenes.relative.s.csv', encoding='gbk')
+
+# input1.csv是那个小文件，其中他们有一行或者若干行存储的特征参数相同
+df2 = pd.read_csv('/Users/zhengbin/Desktop/metastat/same/species_sam.csv', encoding='gbk')
+
+# 加encoding=‘gbk’是因为文件中存在中文，不加可能出现乱码
+index = df1['species'].isin(df2['Name'])
+
+outfile = df1[index]
+
+outfile.to_csv('outfile.csv', index=False, encoding='gbk')
